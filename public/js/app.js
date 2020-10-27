@@ -1,17 +1,5 @@
 console.log('client side file is loaded')
 
-// fetch('weather?address=brescia').then((response) => {
-//     response.json().then((data) => {
-//         if (data.error) {
-//             console.log(data.error)    
-//         } else {
-//             console.log(data)
-//             console.log(data.location)
-//         }
-        
-//     })
-// })
-
 const weatherForm = document.querySelector('form')
 const searc = document.querySelector('input')
 const message_1 = document.querySelector('#message-1')
