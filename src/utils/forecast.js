@@ -5,7 +5,7 @@ const chalk = require('chalk')
 
 const forecast = (latitude, longitude, callback) => {
     const url = 'http://api.weatherstack.com/current?access_key=0a95e2e2bc43bf6f7b755efa9746ff01&query=' + latitude + ',' + longitude +'&units=m'    
-    // console.log(url)
+    console.log(url)
 
     request({url, json: true}, (error, {body}) => {
         if(error) {
@@ -15,11 +15,13 @@ const forecast = (latitude, longitude, callback) => {
             // console.log(chalk.red('Unable to find location'))
             callback('Unable to find location', undefined)
         } else {
-            const {weather_descriptions, feelslike, temperature, precip} = body.current
+            const {weather_descriptions, feelslike, temperature, precip, weather_icons} = body.current
+
             // console.log('weather_descriptions', weather_descriptions[0])
 
             // console.log(chalk.green('There are:', temperature, '°C, but feels like:', feelslike, '°C'))
-            callback(undefined, 'Weather: '+ weather_descriptions[0] + '. There are: ' + temperature +'°C, but feels like: ' + feelslike + '°C Rain ' + 100*precip + '%')
+            callback(undefined, 'Weather: '+ weather_descriptions[0] + '. There are: ' + temperature +'°C, but feels like: ' + feelslike + '°C Rain ' + precip + 'mm', 
+            weather_icons[0])
         }
     })
 }
